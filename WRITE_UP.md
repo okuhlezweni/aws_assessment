@@ -1,7 +1,7 @@
 ## Design Decisions
 
 **Model Choice:** Claude Haiku 4.5 was chosen for this assessment. The model is relatively cheap but still fast. Since this is a ticket lookup assistant which mostly deals with short questions and generates short, exact-match retrieval answers, an expensive and compute-heavy model would've been too much for what the task actually requires. 
-\\
+
 **How the agent calls the tool:** There is an instruction in the system prompt to use lookup_ticket, the action which allows it to look for the ticket in the dataset of tickets, whenever a ticket ID is given.
 
 **Trade-offs**
