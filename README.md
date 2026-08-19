@@ -79,8 +79,8 @@ Put the system prompt ARN into the environment variables as SYSTEM_PROMPT_ARN
 ### 5. Add a Function URL
 - Auth type: `NONE` (fine
 for a demo; see the security note in WRITEUP.md for why this isn't
-appropriate beyond a demo). Enable **CORS** here too — Allow origin `*`,
-- Allow methods `POST`, Allow headers `content-type` — this is required for
+appropriate beyond a demo). Enable **CORS** here too and Allow origin `*`,
+- Allow methods `POST`, Allow headers `content-type` as this is required for
 the browser front-end to be able to call it.
 
 ### 6. Test it
