@@ -2,7 +2,7 @@
 
 A simple AI agent built on **Amazon Bedrock (Claude Haiku 4.5)** and **AWS Lambda**
 that answers general workplace questions and looks up support ticket status
-via a tool call — with a small web front-end on top.
+via a tool call with aweb front-end on top.
 
 ## What it does
 
