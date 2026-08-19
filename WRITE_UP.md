@@ -10,11 +10,11 @@
 ## What I learned
 I was able to use this assessment to put what I learned in the AWS courses and the Cloud Practitioner exam to practice. I was exposed to new AWS services and tools within services that I wasn't familiar with before, such as Bedrock Converse API to manage the conversations with the assistant and Bedrock Prompt Management to manage and store the system prompt. It was also interesting to see the differences between Microsoft Azure and AWS, and how each cloud platform differs in the approach to creating the same solution. Having built a similar tool-calling platform in Azure, it was interesting to see where the concepts map directly (for example the system prompt, tool schema, the model deciding when to call a tool) and where the concepts differ (Azure OpenAI requires a model deployment resource before you can call it, while Bedrock enables model access at the account level with no need for a deployment step). 
 
-\\
+
 ## Limitations
 **Bedrock Guardrails:** Currently, the system prompt is the only function which filters undesirable content and protects against model hallucination. I would implement Bedrock Guardrails to add further protection against this. 
 
-\\
+
 ## Cost and Security
 
 **Cost:**
