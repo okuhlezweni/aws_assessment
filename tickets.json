@@ -1,0 +1,162 @@
+{
+  "TCK-1001": {
+    "status": "Open",
+    "subject": "VPN not connecting from home network",
+    "priority": "High",
+    "assigned_to": "IT Support - Tier 2",
+    "requested_by": "EMP-002",
+    "last_updated": "2026-08-14"
+  },
+  "TCK-1002": {
+    "status": "In Progress",
+    "subject": "Laptop replacement request",
+    "priority": "Medium",
+    "assigned_to": "Asset Management",
+    "requested_by": "EMP-005",
+    "last_updated": "2026-08-15"
+  },
+  "TCK-1003": {
+    "status": "Resolved",
+    "subject": "Password reset for payroll system",
+    "priority": "Low",
+    "assigned_to": "IT Support - Tier 1",
+    "requested_by": "EMP-011",
+    "last_updated": "2026-08-10"
+  },
+  "TCK-1004": {
+    "status": "Closed",
+    "subject": "New monitor request",
+    "priority": "Low",
+    "assigned_to": "Procurement",
+    "requested_by": "EMP-007",
+    "last_updated": "2026-08-01"
+  },
+  "TCK-1005": {
+    "status": "Open",
+    "subject": "Cannot access shared drive - Finance folder",
+    "priority": "High",
+    "assigned_to": "IT Support - Tier 2",
+    "requested_by": "EMP-001",
+    "last_updated": "2026-08-17"
+  },
+  "TCK-1006": {
+    "status": "In Progress",
+    "subject": "Email account locked out after failed logins",
+    "priority": "High",
+    "assigned_to": "IT Support - Tier 1",
+    "requested_by": "EMP-014",
+    "last_updated": "2026-08-16"
+  },
+  "TCK-1007": {
+    "status": "Resolved",
+    "subject": "Printer on 3rd floor not responding",
+    "priority": "Medium",
+    "assigned_to": "Facilities",
+    "requested_by": "EMP-009",
+    "last_updated": "2026-08-12"
+  },
+  "TCK-1008": {
+    "status": "Open",
+    "subject": "Request for additional Salesforce license",
+    "priority": "Medium",
+    "assigned_to": "IT Support - Tier 2",
+    "requested_by": "EMP-003",
+    "last_updated": "2026-08-17"
+  },
+  "TCK-1009": {
+    "status": "Escalated",
+    "subject": "Suspected phishing email reported by user",
+    "priority": "Critical",
+    "assigned_to": "Security Team",
+    "requested_by": "EMP-006",
+    "last_updated": "2026-08-18"
+  },
+  "TCK-1010": {
+    "status": "Closed",
+    "subject": "Onboarding laptop setup - new hire",
+    "priority": "Medium",
+    "assigned_to": "IT Support - Tier 1",
+    "requested_by": "EMP-016",
+    "last_updated": "2026-07-28"
+  },
+  "TCK-1011": {
+    "status": "In Progress",
+    "subject": "Slow WiFi in east wing meeting rooms",
+    "priority": "Medium",
+    "assigned_to": "Network Team",
+    "requested_by": "EMP-010",
+    "last_updated": "2026-08-15"
+  },
+  "TCK-1012": {
+    "status": "Open",
+    "subject": "Access request - HR payroll dashboard",
+    "priority": "High",
+    "assigned_to": "IT Support - Tier 2",
+    "requested_by": "EMP-013",
+    "last_updated": "2026-08-16"
+  },
+  "TCK-1013": {
+    "status": "Resolved",
+    "subject": "Microphone not working on conference room laptop",
+    "priority": "Low",
+    "assigned_to": "Facilities",
+    "requested_by": "EMP-004",
+    "last_updated": "2026-08-11"
+  },
+  "TCK-1014": {
+    "status": "Open",
+    "subject": "Software installation request - Adobe Creative Suite",
+    "priority": "Low",
+    "assigned_to": "Asset Management",
+    "requested_by": "EMP-008",
+    "last_updated": "2026-08-17"
+  },
+  "TCK-1015": {
+    "status": "Escalated",
+    "subject": "Production database connection timing out",
+    "priority": "Critical",
+    "assigned_to": "Engineering - Infra",
+    "requested_by": "EMP-002",
+    "last_updated": "2026-08-18"
+  },
+  "TCK-1016": {
+    "status": "Closed",
+    "subject": "Desk phone not ringing",
+    "priority": "Low",
+    "assigned_to": "Facilities",
+    "requested_by": "EMP-012",
+    "last_updated": "2026-07-30"
+  },
+  "TCK-1017": {
+    "status": "In Progress",
+    "subject": "MFA reset - lost authenticator device",
+    "priority": "High",
+    "assigned_to": "Security Team",
+    "requested_by": "EMP-015",
+    "last_updated": "2026-08-16"
+  },
+  "TCK-1018": {
+    "status": "Open",
+    "subject": "New starter needs building access card",
+    "priority": "Medium",
+    "assigned_to": "Facilities",
+    "requested_by": "EMP-017",
+    "last_updated": "2026-08-17"
+  },
+  "TCK-1019": {
+    "status": "Resolved",
+    "subject": "Excel crashing when opening large spreadsheet",
+    "priority": "Medium",
+    "assigned_to": "IT Support - Tier 1",
+    "requested_by": "EMP-005",
+    "last_updated": "2026-08-13"
+  },
+  "TCK-1020": {
+    "status": "Closed",
+    "subject": "Request to expense conference travel",
+    "priority": "Low",
+    "assigned_to": "Finance",
+    "requested_by": "EMP-001",
+    "last_updated": "2026-07-25"
+  }
+}

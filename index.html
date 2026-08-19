@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internal Helpdesk Assistant</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --border: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --user-bubble: #3b82f6;
+    --assistant-bubble: #334155;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+  header h1 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  header p {
+    margin: 0.25rem 0 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  #chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .bubble {
+    max-width: 70%;
+    padding: 0.65rem 1rem;
+    border-radius: 12px;
+    line-height: 1.4;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+  }
+  .user {
+    align-self: flex-end;
+    background: var(--user-bubble);
+    color: white;
+    border-bottom-right-radius: 2px;
+  }
+  .assistant {
+    align-self: flex-start;
+    background: var(--assistant-bubble);
+    border-bottom-left-radius: 2px;
+  }
+  .assistant.pending {
+    color: var(--muted);
+    font-style: italic;
+  }
+  .assistant.error {
+    background: #7f1d1d;
+  }
+  form {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+    background: var(--panel);
+  }
+  input {
+    flex: 1;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  input:focus { outline: 2px solid var(--accent); }
+  button {
+    padding: 0.65rem 1.3rem;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+  button:hover:not(:disabled) { background: var(--accent-hover); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .examples {
+    padding: 0 1.5rem 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .examples button {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    font-weight: 400;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.75rem;
+  }
+  .examples button:hover:not(:disabled) { background: var(--assistant-bubble); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Internal Helpdesk Assistant</h1>
+  <p>Ask a general question, or check a ticket status (e.g. "TCK-1001")</p>
+</header>
+
+<div id="chat"></div>
+
+<div class="examples">
+  <button type="button" onclick="fillExample('What\'s the status of TCK-1001?')">Check TCK-1001</button>
+  <button type="button" onclick="fillExample('What\'s the status of TCK-9999?')">Unknown ticket</button>
+  <button type="button" onclick="fillExample('How do I reset my email password?')">General question</button>
+</div>
+
+<form id="chat-form">
+  <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off" required />
+  <button type="submit" id="send-btn">Send</button>
+</form>
+
+<script>
+  // ---------------------------------------------------------------------
+  // Set this to your deployed Lambda Function URL before hosting this file.
+  // ---------------------------------------------------------------------
+  const FUNCTION_URL = "https://ynfu2bleiev5eblpcqifewifey0brsre.lambda-url.us-east-1.on.aws/";  // <-- Set this to your deployed Lambda Function URL
+
+  const chat = document.getElementById("chat");
+  const form = document.getElementById("chat-form");
+  const input = document.getElementById("message-input");
+  const sendBtn = document.getElementById("send-btn");
+
+  function addBubble(text, role) {
+    const div = document.createElement("div");
+    div.className = `bubble ${role}`;
+    div.textContent = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+    return div;
+  }
+
+  function fillExample(text) {
+    input.value = text;
+    input.focus();
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const message = input.value.trim();
+    if (!message) return;
+
+    if (FUNCTION_URL.includes("PASTE_YOUR_FUNCTION_URL_HERE")) {
+      addBubble("Set FUNCTION_URL in the HTML file's <script> section first — see the comment above it.", "assistant error");
+      return;
+    }
+
+    addBubble(message, "user");
+    input.value = "";
+    sendBtn.disabled = true;
+
+    const pending = addBubble("Thinking...", "assistant pending");
+
+    try {
+      const resp = await fetch(FUNCTION_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+      });
+      const data = await resp.json();
+
+      pending.remove();
+      if (!resp.ok) {
+        addBubble(data.error || `Request failed (${resp.status})`, "assistant error");
+      } else {
+        addBubble(data.answer, "assistant");
+      }
+    } catch (err) {
+      pending.remove();
+      addBubble(`Network error: ${err.message}. Check the Function URL and CORS settings.`, "assistant error");
+    } finally {
+      sendBtn.disabled = false;
+      input.focus();
+    }
+  });
+
+  addBubble("Hi! Ask me a general question, or give me a ticket ID to check its status.", "assistant");
+</script>
+
+</body>
+</html>
